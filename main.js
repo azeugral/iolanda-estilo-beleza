@@ -13,13 +13,13 @@ setInterval(()=>{imgs[i].classList.remove('on');i=(i+1)%imgs.length;imgs[i].clas
 const tp=$('#topo'),hr=$('#inicio');const ck=()=>tp.classList.toggle('escuro',hr.getBoundingClientRect().bottom>70);addEventListener('scroll',ck,{passive:true});ck();
 
 // fumaça rosé atrás do hero (shader do Roni, tons trocados)
-if(window.FUMACA_FS)window.FUMACA_FS=window.FUMACA_FS.replace('vec3(.6,.42,.27),vec3(.95,.87,.76)','vec3(.55,.33,.28),vec3(.98,.86,.8)');
+if(window.FUMACA_FS)window.FUMACA_FS=window.FUMACA_FS.replace('vec3(.6,.42,.27),vec3(.95,.87,.76)','vec3(.62,.47,.22),vec3(.98,.9,.72)');
 const cv=$('#fumo');const gl=window.fumacaGL&&cv&&window.fumacaGL(cv);
 if(gl&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
- const mob=innerWidth<760,esc=mob?.5:.6;let vis=true,t0=performance.now(),ult=0;
+ const mob=innerWidth<760,esc=mob?.6:.6;let vis=true,t0=performance.now(),ult=0;
  const tam=()=>{cv.width=Math.round(cv.clientWidth*esc);cv.height=Math.round(cv.clientHeight*esc)};tam();addEventListener('resize',tam);
  new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(cv);
- const loop=t=>{requestAnimationFrame(loop);if(!vis||t-ult<33)return;ult=t;gl.desenhar(((t-t0)/1000/40)*Math.PI*2,1.5,mob?1:0)};
+ const loop=t=>{requestAnimationFrame(loop);if(!vis||t-ult<33)return;ult=t;gl.desenhar(((t-t0)/1000/40)*Math.PI*2,mob?1.9:1.5,0)};
  requestAnimationFrame(loop);setTimeout(()=>cv.classList.add('on'),150);
 }
 
@@ -27,7 +27,7 @@ if(gl&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
 const fotos=['n9','n2','n3','n5','n6','n8','n10','n11','n12','n14','n16','n17','n18','n19','n20','n21'];
 const gr=$('#grade');
 fotos.forEach((f,k)=>{const bt=document.createElement('button');bt.setAttribute('aria-label','Ampliar trabalho '+(k+1));
-bt.innerHTML=`<img src="img/${f}.webp" alt="Unhas de gel feitas pela Iolanda">`;bt.onclick=()=>abrir(k);gr.appendChild(bt)});
+bt.innerHTML=`<img src="img/${f}.webp" alt="Unhas de gel feitas pela Iolanda">`;if(k%5===0)bt.className=k%10?'g r':'g';bt.onclick=()=>abrir(k);gr.appendChild(bt)});
 const lb=$('#lb'),li=$('#lbImg');let at=0;
 function abrir(k){at=(k+fotos.length)%fotos.length;li.src=`img/${fotos[at]}.webp`;lb.hidden=false}
 $('#lbX').onclick=()=>lb.hidden=true;$('#lbP').onclick=()=>abrir(at-1);$('#lbS').onclick=()=>abrir(at+1);

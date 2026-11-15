@@ -252,3 +252,59 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--tinta)}
  linear-gradient(var(--ouro),var(--ouro)) 0 100%/22px 1px,linear-gradient(var(--ouro),var(--ouro)) 0 100%/1px 22px,
  linear-gradient(var(--ouro),var(--ouro)) 100% 100%/22px 1px,linear-gradient(var(--ouro),var(--ouro)) 100% 100%/1px 22px;background-repeat:no-repeat;animation:sobe 1.2s .55s var(--ez) both}
 @media (max-width:980px){.hp-peca{width:min(62vw,300px)}}
+
+/* ===== v4: identidade E&B (mármore negro, ouro e o rosa do "&") ===== */
+:root{--papel:#f6f1e9;--blush:#ece3d3;--rosa:#e6a9b6;--tinta:#0e0c0b;--cinza:#5e574f;--madeira:#a8823b;--ouroV:#c9a45c;--ouroC:#ead29a}
+h1,h2,h3,.marca,.gaveta a:not(.bt),.cursos b,.r-nome{font-family:"Cormorant Garamond",serif;font-weight:500}
+h2{letter-spacing:.01em}
+.marca,.r-nome,.hp h1{font-family:Cinzel,serif;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+.marca{font-size:19px}
+.r-nome{font-size:32px}
+.hp{--ouro:#d4b06a;--ouro2:#f0dca8;--noite:#0b0a09;background:radial-gradient(110% 85% at 78% 40%,#221d17 0%,#0b0a09 64%)}
+.hp h1{font-size:clamp(54px,7.4vw,118px);line-height:.98;letter-spacing:.06em}
+.hp h1 span:last-child{padding-left:1.1em}
+.hp h1 span:first-child::first-letter{color:var(--ouroC)}
+.hp-pre b{color:var(--rosa);font-weight:600}
+.bt-ouro{background:linear-gradient(135deg,#f0dca8,#c9a45c 55%,#a8823b);color:#0e0c0b}
+.bt-ouro:hover{background:linear-gradient(135deg,#f7e8c2,#d8b46c)}
+.hp-peca::before,.hp-peca::after{border-color:var(--ouro)!important}
+.servicos{background:var(--blush)}
+.srv figure{outline:1px solid rgba(168,130,59,.5);outline-offset:6px}
+.formacoes{background:#0b0a09;background:radial-gradient(90% 80% at 20% 30%,#211b15,#0b0a09 70%)}
+.f-foto{outline-color:var(--ouroV)}
+.cursos b{font-size:30px}
+.rodape{background:#0b0a09}
+.bt-ink:hover,.menu .mc:hover{background:var(--madeira);border-color:var(--madeira)}
+.topo.escuro .menu .mc{background:linear-gradient(135deg,#f0dca8,#c9a45c);color:#0e0c0b}
+
+/* títulos com ornamento */
+.orn{display:flex;align-items:center;justify-content:center;gap:14px;margin:-30px auto 46px;color:var(--madeira)}
+.orn::before,.orn::after{content:"";width:min(120px,22vw);height:1px;background:linear-gradient(90deg,transparent,currentColor)}
+.orn::after{transform:scaleX(-1)}
+.orn i{width:8px;height:8px;border:1px solid currentColor;transform:rotate(45deg)}
+.orn i:nth-child(2){width:5px;height:5px;background:var(--rosa);border-color:var(--rosa)}
+.f-txt .orn{margin:-10px auto 26px;color:var(--ouroV)}
+
+/* portfólio adornado */
+.trabalhos{position:relative;background:var(--papel);overflow:hidden}
+.trabalhos::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background:
+ radial-gradient(60% 40% at 0% 0%,rgba(201,164,92,.16),transparent 70%),
+ radial-gradient(50% 40% at 100% 100%,rgba(230,169,182,.18),transparent 70%)}
+.trabalhos>*{position:relative}
+.quadro{position:relative;max-width:1180px;margin:0 auto;padding:34px;border:1px solid rgba(168,130,59,.55)}
+.quadro::before{content:"";position:absolute;inset:8px;border:1px solid rgba(168,130,59,.25);pointer-events:none}
+.quadro>.c{position:absolute;width:26px;height:26px;border:solid var(--madeira);z-index:1}
+.quadro>.c1{top:-6px;left:-6px;border-width:2px 0 0 2px}.quadro>.c2{top:-6px;right:-6px;border-width:2px 2px 0 0}
+.quadro>.c3{bottom:-6px;left:-6px;border-width:0 0 2px 2px}.quadro>.c4{bottom:-6px;right:-6px;border-width:0 2px 2px 0}
+.quadro>.d{position:absolute;left:50%;width:12px;height:12px;background:var(--papel);border:1px solid var(--madeira);transform:translateX(-50%) rotate(45deg);z-index:1}
+.quadro>.d1{top:-7px}.quadro>.d2{bottom:-7px}
+.grade{grid-template-columns:repeat(4,1fr);grid-auto-flow:dense;gap:12px}
+.grade button{position:relative;background:var(--blush)}
+.grade button::after{content:"";position:absolute;inset:8px;border:1px solid rgba(240,220,168,.0);transition:border-color .4s var(--ez),inset .4s var(--ez);pointer-events:none}
+.grade button:hover::after{border-color:rgba(240,220,168,.9);inset:12px}
+.grade button.g{grid-column:span 2;grid-row:span 2}
+
+@media (max-width:980px){.grade{grid-template-columns:repeat(3,1fr);gap:8px}.quadro{padding:20px}}
+@media (max-width:560px){.grade{grid-template-columns:repeat(2,1fr);gap:6px}.quadro{padding:12px}.quadro::before{inset:5px}.grade button::after{inset:5px}}
+@media (min-width:981px){.grade button.g.r{grid-column:3/span 2}}
+@media (max-width:980px){.grade button.g{grid-column:span 2}}
