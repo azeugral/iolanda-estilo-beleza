@@ -9,6 +9,20 @@ g.querySelectorAll('a').forEach(a=>a.onclick=()=>{b.setAttribute('aria-expanded'
 const imgs=[...document.querySelectorAll('#hxIn img')];let i=0;
 setInterval(()=>{imgs[i].classList.remove('on');i=(i+1)%imgs.length;imgs[i].classList.add('on')},3200);
 
+// topo escuro sobre o hero
+const tp=$('#topo'),hr=$('#inicio');const ck=()=>tp.classList.toggle('escuro',hr.getBoundingClientRect().bottom>70);addEventListener('scroll',ck,{passive:true});ck();
+
+// fumaça rosé atrás do hero (shader do Roni, tons trocados)
+if(window.FUMACA_FS)window.FUMACA_FS=window.FUMACA_FS.replace('vec3(.6,.42,.27),vec3(.95,.87,.76)','vec3(.55,.33,.28),vec3(.98,.86,.8)');
+const cv=$('#fumo');const gl=window.fumacaGL&&cv&&window.fumacaGL(cv);
+if(gl&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+ const mob=innerWidth<760,esc=mob?.5:.6;let vis=true,t0=performance.now(),ult=0;
+ const tam=()=>{cv.width=Math.round(cv.clientWidth*esc);cv.height=Math.round(cv.clientHeight*esc)};tam();addEventListener('resize',tam);
+ new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(cv);
+ const loop=t=>{requestAnimationFrame(loop);if(!vis||t-ult<33)return;ult=t;gl.desenhar(((t-t0)/1000/40)*Math.PI*2,1.5,mob?1:0)};
+ requestAnimationFrame(loop);setTimeout(()=>cv.classList.add('on'),150);
+}
+
 // grade
 const fotos=['n9','n2','n3','n5','n6','n8','n10','n11','n12','n14','n16','n17','n18','n19','n20','n21'];
 const gr=$('#grade');
