@@ -27,7 +27,7 @@ if(gl&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
 const fotos=['n9','n2','n3','n5','n6','n8','n10','n11','n12','n14','n16','n17','n18','n19','n20','n21'];
 const gr=$('#grade');
 fotos.forEach((f,k)=>{const bt=document.createElement('button');bt.setAttribute('aria-label','Ampliar trabalho '+(k+1));
-bt.innerHTML=`<img src="img/${f}.webp" alt="Unhas de gel feitas pela Iolanda">`;if(k%5===0)bt.className=k%10?'g r':'g';bt.onclick=()=>abrir(k);gr.appendChild(bt)});
+bt.innerHTML=`<img src="img/${f}.webp" alt="Unhas de gel feitas pela Iolanda">`;bt.onclick=()=>abrir(k);gr.appendChild(bt)});
 const lb=$('#lb'),li=$('#lbImg');let at=0;
 function abrir(k){at=(k+fotos.length)%fotos.length;li.src=`img/${fotos[at]}.webp`;lb.hidden=false}
 $('#lbX').onclick=()=>lb.hidden=true;$('#lbP').onclick=()=>abrir(at-1);$('#lbS').onclick=()=>abrir(at+1);
